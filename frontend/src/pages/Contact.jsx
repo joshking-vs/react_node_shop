@@ -9,8 +9,8 @@ function Contact() {
               
               <div class="d-flex flex-column gap-3 fs-6">
                 <div>📍 <strong>Location:</strong> Nairobi, Kenya</div>
-                <div>📞 <strong>Phone:</strong> +254 XXX XXX XXX</div>
-                <div>✉️ <strong>Email:</strong> info@mheniktraders.com</div>
+                <div>📞 <strong>Phone:</strong> +254 716 687687</div>
+                <div>✉️ <strong>Email:</strong> mhenikt@gmail.com</div>
                 <div>⏱️ <strong>Hours:</strong> Mon - Sat | 8:00 AM - 5:00 PM</div>
               </div>
             </div>
@@ -22,7 +22,7 @@ function Contact() {
               <form onSubmit={(e) => e.preventDefault()}>
                 <div class="mb-3">
                   <label class="form-label small fw-bold text-muted">Your Name</label>
-                  <input type="text" class="form-control rounded-mhenik" placeholder="Joshua Agutu" required />
+                  <input type="text" class="form-control rounded-mhenik" placeholder="Name" required />
                 </div>
                 <div class="mb-3">
                   <label class="form-label small fw-bold text-muted">Phone Number (WhatsApp Ready)</label>
