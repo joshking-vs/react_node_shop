@@ -161,35 +161,16 @@ function Home() {
           {/* Flex Row Container containing interactive target nodes */}
           <div className="d-flex flex-wrap justify-content-center align-items-center gap-4 gap-md-5 pt-2">
             
-            {/* 📘 Facebook */}
-            <a href="https://facebook.com" target="_blank" rel="noreferrer" className="text-decoration-none social-link-item">
-              <i className="bi bi-facebook d-block fs-2 text-dark mb-1"></i>
-              <span className="small fw-bold text-secondary font-monospace">Facebook</span>
-            </a>
-
-            {/* 🟥 YouTube */}
-            <a href="https://youtube.com" target="_blank" rel="noreferrer" className="text-decoration-none social-link-item">
-              <i className="bi bi-youtube d-block fs-2 text-dark mb-1"></i>
-              <span className="small fw-bold text-secondary font-monospace">YouTube</span>
-            </a>
-
-            {/* 📸 Instagram */}
-            <a href="https://instagram.com" target="_blank" rel="noreferrer" className="text-decoration-none social-link-item">
-              <i className="bi bi-instagram d-block fs-2 text-dark mb-1"></i>
-              <span className="small fw-bold text-secondary font-monospace">Instagram</span>
-            </a>
+            
 
             {/* 🎵 TikTok */}
-            <a href="https://tiktok.com" target="_blank" rel="noreferrer" className="text-decoration-none social-link-item">
+            <a href="https://www.tiktok.com/@mheniktraders8?_r=1&_t=ZS-99ZSFntMUY0" target="_blank" rel="noreferrer" className="text-decoration-none social-link-item">
               <i className="bi bi-tiktok d-block fs-2 text-dark mb-1"></i>
               <span className="small fw-bold text-secondary font-monospace">TikTok</span>
             </a>
 
-            {/* 🎨 Pinterest */}
-            <a href="https://pinterest.com" target="_blank" rel="noreferrer" className="text-decoration-none social-link-item">
-              <i className="bi bi-pinterest d-block fs-2 text-dark mb-1"></i>
-              <span className="small fw-bold text-secondary font-monospace">Pinterest</span>
-            </a>
+            
+            
 
           </div>
         </div>
