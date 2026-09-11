@@ -18,6 +18,7 @@ export default function ProductCatalog() {
   const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(false);
   const [alertMsg, setAlertMsg] = useState('');
+  const [previewImage, setPreviewImage] = useState(null);
 
   const reasonableFilters = [
     { label: "All Spares", value: "" },
@@ -157,17 +158,42 @@ export default function ProductCatalog() {
 
                     <div className="card h-100 border-0 shadow-sm bg-white rounded-mhenik overflow-hidden d-flex flex-column justify-content-between">
                       
-                      {/* 1. TOP LIGHT GREY IMAGE FRAME WITH RESOLVED IMAGE */}
+                      {/* 1. TOP IMAGE FRAME WITH AMBIENT BLURRED BACKDROP */}
                       <div 
-                        className="position-relative p-3 d-flex align-items-center justify-content-center"
-                        style={{ background: '#f4f5f7', height: '170px' }}
+                        className="position-relative overflow-hidden p-2 d-flex align-items-center justify-content-center"
+                        style={{ background: '#f4f5f7', height: '175px', cursor: 'zoom-in' }}
+                        onClick={() => setPreviewImage({ url: imageUrl, name, sku: p.sku })}
+                        title="Click to view full image"
                       >
+                        {/* Ambient Background Layer */}
+                        <img 
+                          src={imageUrl} 
+                          alt=""
+                          aria-hidden="true"
+                          className="position-absolute w-100 h-100"
+                          style={{
+                            objectFit: 'cover',
+                            filter: 'blur(16px)',
+                            transform: 'scale(1.2)',
+                            opacity: 0.25,
+                            pointerEvents: 'none'
+                          }}
+                          onError={(e) => {
+                            e.currentTarget.onerror = null;
+                            e.currentTarget.src = "https://cdn-icons-png.flaticon.com/512/744/744465.png";
+                          }}
+                        />
+
+                        {/* Foreground Part Layer */}
                         <img 
                           src={imageUrl} 
                           alt={name}
                           loading="lazy"
                           decoding="async"
-                          className="img-fluid object-fit-cover w-100 h-100"
+                          className="position-relative img-fluid object-fit-contain w-100 h-100"
+                          style={{
+                            filter: 'drop-shadow(0 4px 6px rgba(0, 0, 0, 0.12))'
+                          }}
                           onError={(e) => {
                             e.currentTarget.onerror = null;
                             e.currentTarget.src = "https://cdn-icons-png.flaticon.com/512/744/744465.png";
@@ -258,6 +284,40 @@ export default function ProductCatalog() {
             </div>
           )}
         </>
+      )}
+
+      {/* Lightbox Modal (Click background or X button to dismiss) */}
+      {previewImage && (
+        <div 
+          className="position-fixed top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center p-3"
+          style={{ background: 'rgba(0, 0, 0, 0.85)', zIndex: 2000, cursor: 'zoom-out' }}
+          onClick={() => setPreviewImage(null)}
+        >
+          <div 
+            className="position-relative bg-white p-4 rounded-mhenik shadow-lg text-center" 
+            style={{ maxWidth: '90vw', maxHeight: '90vh', cursor: 'default' }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button 
+              type="button" 
+              className="btn-close position-absolute top-0 end-0 m-3" 
+              aria-label="Close" 
+              onClick={() => setPreviewImage(null)}
+            ></button>
+
+            <img 
+              src={previewImage.url} 
+              alt={previewImage.name} 
+              className="img-fluid rounded" 
+              style={{ maxHeight: '72vh', maxWidth: '100%', objectFit: 'contain' }} 
+            />
+
+            <div className="mt-3">
+              <h6 className="fw-bold text-dark mb-1">{previewImage.name}</h6>
+              <span className="text-muted small font-monospace">SKU: {previewImage.sku}</span>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );
